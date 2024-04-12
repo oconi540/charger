@@ -1,12 +1,7 @@
 const { FastifyInstance } = require('fastify');
 const Sensible = require('@fastify/sensible');
-
-const charger = {
-    id: 1,
-    alias: 'charger1',
-    model: 'NW-T1',
-    serialNumber: 1234567
-};
+const knexConfig = require('../knexfile');
+const knex = require('knex')(knexConfig.development);
 
 async function plugin(fastify, opts) {
     await fastify.register(Sensible);
@@ -14,20 +9,27 @@ async function plugin(fastify, opts) {
     fastify.route({
         url: '/charger/:id',
         method: 'GET',
-        handler: function myHandler(request, reply) {
+        handler: async function myHandler(request, reply) {
             const { id } = request.params;
-            // Simulate fetching charger data based on the provided id
-            const selectedCharger = charger.id == id ? charger : null;
+            try {
+                const charger = await knex('charger').where('id', id).first();
 
-            if (selectedCharger) {
-                reply.send({
-                    message: 'Charger found successfully',
-                    success: true,
-                    data: selectedCharger,
-                });
-            } else {
-                reply.code(404).send({
-                    message: 'Charger not found',
+                if (charger) {
+                    reply.send({
+                        message: 'Charger found successfully',
+                        success: true,
+                        data: charger,
+                    });
+                } else {
+                    reply.code(404).send({
+                        message: 'Charger not found',
+                        success: false,
+                    });
+                }
+            } catch (error) {
+                console.error('Error fetching charger:', error);
+                reply.code(500).send({
+                    message: 'Internal server error',
                     success: false,
                 });
             }
