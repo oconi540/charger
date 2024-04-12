@@ -3,7 +3,7 @@ const Sensible = require('@fastify/sensible');
 const knexConfig = require('../knexfile');
 const knex = require('knex')(knexConfig.development);
 
-async function plugin(fastify, opts) {
+async function app(fastify, opts) {
     await fastify.register(Sensible);
 
     fastify.route({
@@ -37,4 +37,4 @@ async function plugin(fastify, opts) {
     });
 }
 
-module.exports = plugin;
+module.exports = app;
