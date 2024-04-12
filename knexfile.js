@@ -11,28 +11,11 @@ module.exports = {
             max: 10,
         },
         migrations: {
-            directory: __dirname + '/migrations',
+            directory: __dirname + '/db/migrations',
             tableName: 'knex_migrations',
         },
         seeds: {
-            directory: __dirname + '/seeds/development',
+            directory: __dirname + '/db/seeds',
         },
-    },
-    testing: {
-        client: 'pg',
-        connection: {
-            connectionString: 'postgres://ikerocon@localhost/chargerdb',
-        },
-        pool: {
-            min: 2,
-            max: 10,
-        },
-        migrations: {
-            directory: __dirname + '/migrations',
-            tableName: 'knex_migrations',
-        },
-        seeds: {
-            directory: __dirname + '/seeds/testing',
-        },
-    },
+    }
 }
