@@ -7,7 +7,7 @@ exports.up = async function(knex) {
         table.increments('id').primary();
         table.string('alias').notNullable();
         table.string('model').notNullable();
-        table.string('serialNumber').notNullable().unique();
+        table.integer('serialNumber').notNullable().unique();
     });
 };
 
