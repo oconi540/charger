@@ -1,10 +1,13 @@
-const knexConfig = require("../knexfile");
-const knex = require('knex')(knexConfig.development);
+import { FastifyRequest as Request, FastifyReply as Reply } from 'fastify';
+import knexConfig from '../knexfile';
+import knex from 'knex';
 
-async function getCharger(request, reply) {
-    const { id } = request.params;
+const knexInstance = knex(knexConfig.development);
+
+async function getCharger(request: Request, reply: Reply): Promise<void> {
+    const { id } = request.params as { id: string };
     try {
-        const charger = await knex('charger').where('id', id).first();
+        const charger = await knexInstance('charger').where('id', id).first();
 
         if (charger) {
             reply.send({
@@ -27,4 +30,4 @@ async function getCharger(request, reply) {
     }
 }
 
-module.exports = getCharger;
+export default getCharger;
