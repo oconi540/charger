@@ -3,18 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "start": "tsx watch src/index.ts",
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate:make": "tsx tsconfig.json ./node_modules/.bin/knex migrate:make",
-    "migrate:latest":"tsx tsconfig.json ./node_modules/.bin/knex knex migrate:latest",
-    "migrate:rollback": "tsx tsconfig.json ./node_modules/.bin/knex knex migrate:rollback",
-    "migrate:up": "tsx tsconfig.json ./node_modules/.bin/knex knex migrate:up",
-    "migrate:down": "tsx tsconfig.json ./node_modules/.bin/knex knex migrate:down",
-    "migrate:list": "tsx tsconfig.json ./node_modules/.bin/knex knex migrate:list",
-    "seed:make": "tsx tsconfig.json ./node_modules/.bin/knex knex seed:make",
-    "seed:run": "tsx tsconfig.json ./node_modules/.bin/knex knex seed:run"
+    "migrate:make": "knex migrate:make",
+    "migrate:latest": "knex migrate:latest",
+    "migrate:rollback": "knex migrate:rollback",
+    "migrate:up": "knex migrate:up",
+    "migrate:down": "knex migrate:down",
+    "migrate:list": "knex migrate:list",
+    "seed:make": "knex seed:make",
+    "seed:run": "knex seed:run"
   },
   "keywords": [],
   "author": "",
@@ -32,16 +31,6 @@
     "fastify-cli": "^6.1.1",
     "fastify-plugin": "^4.5.1",
     "knex": "^3.1.0",
-    "path": "^0.12.7",
     "pg": "^8.11.5"
-  },
-  "devDependencies": {
-    "@types/dotenv": "^8.2.0",
-    "@types/knex": "^0.16.1",
-    "@types/node": "^20.12.7",
-    "fastify-tsconfig": "^2.0.0",
-    "ts-node": "^10.9.2",
-    "tsx": "^4.7.2",
-    "typescript": "^5.4.5"
   }
 }
