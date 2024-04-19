@@ -3,21 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "start": "tsx watch src/index.ts",
+    "start": "tsc && node dist/src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate:make": "tsx tsconfig.json ./node_modules/.bin/knex migrate:make",
-    "migrate:latest": "tsx tsconfig.json ./node_modules/.bin/knex knex migrate:latest",
-    "migrate:rollback": "tsx tsconfig.json ./node_modules/.bin/knex knex migrate:rollback",
-    "migrate:up": "tsx tsconfig.json ./node_modules/.bin/knex knex migrate:up",
-    "migrate:down": "tsx tsconfig.json ./node_modules/.bin/knex knex migrate:down",
-    "migrate:list": "tsx tsconfig.json ./node_modules/.bin/knex knex migrate:list",
-    "seed:make": "tsx tsconfig.json ./node_modules/.bin/knex knex seed:make",
-    "seed:run": "tsx tsconfig.json ./node_modules/.bin/knex knex seed:run"
+    "migrate:make": "knex migrate:make",
+    "migrate:latest":"knex migrate:latest",
+    "migrate:rollback": "knex migrate:rollback",
+    "migrate:up": "knex migrate:up",
+    "migrate:down": "knex migrate:down",
+    "migrate:list": "knex migrate:list",
+    "seed:make": "knex seed:make",
+    "seed:run": "knex seed:run"
   },
   "keywords": [],
-  "author": "IkerOcon <iker.ocon@540deg.com>",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "@fastify/autoload": "^5.8.0",
@@ -43,6 +42,5 @@
     "ts-node": "^10.9.2",
     "tsx": "^4.7.2",
     "typescript": "^5.4.5"
-  },
-  "repository": "git@github.com:oconi540/charger.git"
+  }
 }
